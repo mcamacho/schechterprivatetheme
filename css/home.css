@@ -1,0 +1,49 @@
+/* = Home Specific
+----------------------------------------------- */
+/* general */
+#login-register{
+    width:100%;
+    overflow:hidden;
+}
+
+#login-register div.left{
+    float:left;
+    width:50%;
+}
+#login-register div.right{
+    float:right;
+    width:50%;
+}
+
+#login-register,
+#login-register div h2 {
+    border-bottom:1px solid #000000;
+}
+
+#login-register div h2 {
+    font-size:20px;
+    margin-bottom:10px;
+    padding-bottom:4px;
+}
+
+#login-register p {
+    margin-bottom:10px;
+}
+
+#login-register form {
+    width:80%;
+}
+
+#login-register input {
+    width:100%;
+}
+
+p.login-submit,
+p.register-submit {
+    text-align:right;
+}
+input#rememberme,
+input#wp-submit,
+input#wp-register {
+    width:auto;
+}
