@@ -1,5 +1,5 @@
 /*
-Theme Name:     Schechter Theme
+Theme Name:     Schechter Private Theme
 Theme URI:      http: //bbmg.com/
 Description:    Design created for the Schechter Network 
 Author:         Designer Scott Ketchum - Developer Mauricio Camacho
@@ -234,23 +234,6 @@ form.searchform #searchsubmit {
 	}
 	div.entry-content p a:visited {
 		color:#773141;
-	}
-	article.hero-footer h1.entry-title {
-		border:1px dashed #ffe5ae;
-		border-width:2px 0;
-		padding:5px 0 2px 0;
-		margin:20px 0 0;
-		font-size:62px;
-		text-transform:uppercase;
-		color:#666666;
-	}
-	article.hero-footer h1.entry-title span {
-		font-weight:bold;
-		color:#A40C34;
-	}
-	article.hero-footer div.entry-content,
-	div.find-school {
-		margin:14px 0 22px 0;
 	}
 
 /* = Aside Structure

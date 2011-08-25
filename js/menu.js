@@ -52,16 +52,16 @@ jQuery(function() {
     );*/
   
   //change title style for hover-tmpl
-  $specialTitle = jQuery('article.hero-footer h1.entry-title');
-  if($specialTitle.length > 0){
-    jQuery($specialTitle).each(function(i,val){
-      $titletext = jQuery(val).text();
-      $firstword = $titletext.indexOf(' ') > 0 ? $titletext.substr(0,$titletext.indexOf(' ')) : $titletext ;
-      $titletext = $titletext.replace($firstword,'<span>' + $firstword + '</span>');
-      jQuery(val).html($titletext);
-      });
-  }
+  //$specialTitle = jQuery('article.hero-footer h1.entry-title');
+  //if($specialTitle.length > 0){
+  //  jQuery($specialTitle).each(function(i,val){
+  //    $titletext = jQuery(val).text();
+  //    $firstword = $titletext.indexOf(' ') > 0 ? $titletext.substr(0,$titletext.indexOf(' ')) : $titletext ;
+  //    $titletext = $titletext.replace($firstword,'<span>' + $firstword + '</span>');
+  //    jQuery(val).html($titletext);
+  //    });
+  //}
   
   //add link to quote paragraph
-  jQuery('#aside_quote p').wrapInner('<a href="' + jQuery('#aside_quote li a').attr('href') + '" />');
+  //jQuery('#aside_quote p').wrapInner('<a href="' + jQuery('#aside_quote li a').attr('href') + '" />');
 });

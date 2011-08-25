@@ -121,6 +121,109 @@ function schechter_widgets_init() {
     ) );
 }
 
+//add scphoto post type
+//      add_action('init', 'scphoto_post_type');
+function scphoto_post_type() 
+{
+  $labels = array(
+    'name' => _x('scphotos', 'post type general name'),
+    'singular_name' => _x('scphoto', 'post type singular name'),
+    'add_new' => _x('Add New', 'scphoto'),
+    'add_new_item' => __('Add New scphoto'),
+    'edit_item' => __('Edit scphoto'),
+    'new_item' => __('New scphoto'),
+    'all_items' => __('All scphotos'),
+    'view_item' => __('View scphoto'),
+    'search_items' => __('Search scphotos'),
+    'not_found' =>  __('No scphotos found'),
+    'not_found_in_trash' => __('No scphotos found in Trash'), 
+    'parent_item_colon' => '',
+    'menu_name' => 'scphotos'
+
+  );
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'hierarchical' => false,
+    'description' => 'Photo type post used for the photo library',
+    'supports' => array( 'title', 'excerpt', 'author', 'thumbnail', 'custom-fields' ),
+    'taxonomies' => array( 'category', 'post_tag' ),
+    'show_ui' => true,
+    'show_in_menu' => true,
+    'menu_position' => 5,
+    
+    'show_in_nav_menus' => true,
+    'publicly_queryable' => true,
+    'exclude_from_search' => false,
+    'has_archive' => true,
+    'query_var' => true,
+    'can_export' => true,
+    'rewrite' => true,
+    'capability_type' => 'post'
+  ); 
+  register_post_type('sc_scphoto',$args);
+}
+
+//add filter to ensure the text Book, or book, is displayed when user updates a book 
+//      add_filter('post_updated_messages', 'scphoto_post_type_messages');
+function scphoto_post_type_messages( $messages ) {
+  global $post, $post_ID;
+
+  $messages['scphoto'] = array(
+    0 => '', // Unused. Messages start at index 1.
+    1 => sprintf( __('scphoto updated. <a href="%s">View scphoto</a>'), esc_url( get_permalink($post_ID) ) ),
+    2 => __('Custom field updated.'),
+    3 => __('Custom field deleted.'),
+    4 => __('scphoto updated.'),
+    /* translators: %s: date and time of the revision */
+    5 => isset($_GET['revision']) ? sprintf( __('scphoto restored to revision from %s'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+    6 => sprintf( __('scphoto published. <a href="%s">View scphoto</a>'), esc_url( get_permalink($post_ID) ) ),
+    7 => __('scphoto saved.'),
+    8 => sprintf( __('scphoto submitted. <a target="_blank" href="%s">Preview scphoto</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
+    9 => sprintf( __('scphoto scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview scphoto</a>'),
+      // translators: Publish box date format, see http://php.net/date
+      date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink($post_ID) ) ),
+    10 => sprintf( __('scphoto draft updated. <a target="_blank" href="%s">Preview scphoto</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
+  );
+
+  return $messages;
+}
+
+//display contextual help for Books
+//    add_action( 'contextual_help', 'scphoto_post_type_add_help_text', 10, 3 );
+
+function scphoto_post_type_add_help_text($contextual_help, $screen_id, $screen) { 
+  //$contextual_help .= var_dump($screen); // use this to help determine $screen->id
+  if ('sc_scphoto' == $screen->id ) {
+    $contextual_help =
+      '<p>' . __('Things to remember when adding or editing a scphoto:') . '</p>' .
+      '<ul>' .
+      '<li>' . __('The Title is just for reference,') . '</li>' .
+      '<li>' . __('The content will be shown within scphotos.') . '</li>' .
+      '<li>' . __('The custom fields are shown in this order and are:') . '</li>' .
+      '<li>' . __('Name, Location, School, Class, Other and Link (this one not display).') . '</li>' .
+      '<li>' . __('If the custom fields are not included just the content will be showed.') . '</li>' .
+      '</ul>' ;
+  } elseif ( 'edit-book' == $screen->id ) {
+    $contextual_help = 
+      '<p>' . __('This is the help screen displaying the table of books blah blah blah.') . '</p>' ;
+  }
+  return $contextual_help;
+}
+
+//       add_filter('pre_get_posts', 'query_post_type');
+function query_post_type($query) {
+  if(is_category() || is_tag()) {
+    $post_type = get_query_var('post_type');
+	if($post_type)
+	    $post_type = $post_type;
+	else
+	    $post_type = array('post','sc_scphoto','nav_menu_item'); // replace cpt to your custom post type
+    $query->set('post_type',$post_type);
+	return $query;
+    }
+}
+
 /*
  * set of functions for the login register home page
  */
