@@ -10,22 +10,20 @@ jQuery(function() {
     jQuery(val).html($linktext);
     });
   $mainlinks.find('span').css('font-weight','bold');
-  //select the current-menu-item
-  $element = jQuery('#main li.current-menu-item');
-  //modify element css
-  //$element.children('a').css('font-weight','bold');
-  //if menu level 2, show the ul list menu
-  if(jQuery($element).children('ul.sub-menu').length || jQuery($element).parent('ul.sub-menu').length){
-  //select the ul
-    $ulelement = jQuery($element).parent().hasClass('menu') ? jQuery($element).children('ul') : jQuery($element).parent();
-    $ulelement.show();
-    $ulelement.siblings('a').css({'padding-top':'2px','height':'auto','color':'#ffe5ae','margin-left':'5px'});
-    $ulelement.parent().css({'min-height':'79px','background-color':'#a40c34'});
-    $ulelement.children().find('a').css('margin-left','5px');
-  }
+  //select the ul main menu that has the current-menu-item class
+  jQuery('#main ul.menu')
+      .children('.current-menu-item, .current-menu-ancestor')
+      .css({'min-height':'79px','background-color':'#a40c34'})
+      .children('a').css({'padding-top':'2px','height':'auto','color':'#ffe5ae'})
+      .end()
+      .find('ul').show()
+      .end()
+      .find('a').css({'margin-left':'5px'})
+      .end()
+      .find('ul ul').css({'margin-left':'10px'});
   
   //interactive behavior----------------
-  jQuery('#main ul.menu > li').not('li.current-menu-parent, li.current-menu-item').hover(
+  jQuery('#main ul.menu > li').not('li.current-menu-ancestor, li.current-menu-item').hover(
     function() {
       jQuery(this).css('background-color','#A40C34');
       jQuery('a',this).css('color','#FFE5AE');

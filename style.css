@@ -183,13 +183,10 @@ form.searchform #searchsubmit {
 	width: 100%;
 }
 	#content {
+        position: relative;
 		margin: 0 0 0 248px;
 		width: 712px;
 	}
-        
-        #content article {
-            position:relative;
-        }
         #content header {
             position:absolute;
             top:15px;
@@ -243,6 +240,46 @@ form.searchform #searchsubmit {
 	/*margin-left: 7.6%;*/
 	margin-right: 0;
 	/*width: 18.8%;*/
+}
+div.footer-widgets {
+  border:1px solid #000000;
+  border-width:1px 0;
+  padding:10px 0;
+  overflow:hidden;
+}
+aside.img_txt_wgt {
+    float:left;
+    width:218px;
+    overflow:hidden;
+    margin-left:29px;
+}
+aside.img_txt_wgt:first-child {
+    margin-left:0;
+}
+#ie6 aside.img_txt_wgt {
+    margin-left:17px;
+    width:210px;
+}
+aside.img_txt_wgt a{
+    display:block;
+    height:137px;
+    overflow:hidden;
+}
+aside.img_txt_wgt h3{
+    margin:9px 0 3px 0;
+}
+aside.img_txt_wgt h3 a{
+    display:inline;
+    height:auto;
+    overflow:auto;
+    text-transform:uppercase;
+    font-weight:bold;
+    color:#731B36;
+    font-size:15px;
+}
+aside.img_txt_wgt div{
+    font-size:11px;
+    line-height:1.7em;
 }
 #aside_quote {
 	font-family: proxima-nova, Arial, sans-serif;

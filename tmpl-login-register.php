@@ -22,7 +22,7 @@
         </article><!-- #post-<?php the_ID(); ?> -->
         
         <div id="login-register">
-            <?php $args = array('redirect' => site_url( '/private-home/' ));?>
+            <?php $args = array('redirect' => home_url());?>
             <div class="left">
                 <h2>Login</h2>
                 <?php wp_login_form($args); ?>
