@@ -10,7 +10,9 @@
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
         <?php if ( has_post_thumbnail() ) :
             the_post_thumbnail();
-            endif; ?>
+          else : ?>
+          <img width="712" height="150" src="<?php echo content_url(); ?>/uploads/2011/08/private_schechter_header.jpg" class="attachment-post-thumbnail wp-post-image" alt="private_schechter_header" title="private_schechter_header">
+        <?php endif; ?>
         <?php the_post(); ?>
             <header class="entry-header">					
                 <h1 class="entry-title"><?php the_title(); ?></h1>
