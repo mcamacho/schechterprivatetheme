@@ -31,6 +31,8 @@ a {
 	text-decoration:none;
 	outline:medium none; 
 }
+strong{font-weight:bold;}
+em{font-style:italic;}
 
 /* = Structure
 ----------------------------------------------- */
@@ -232,6 +234,25 @@ form.searchform #searchsubmit {
 	div.entry-content p a:visited {
 		color:#773141;
 	}
+        
+        h2.category-logo {
+            border-bottom:1px solid #000000;
+            margin-bottom:8px;
+        }
+        ul.category-logo li {
+            width: 550px;
+            overflow: hidden;
+        }
+        ul.category-logo div {
+            float: right;
+            width: 350px;
+        }
+        ul.category-logo p {
+            margin-bottom: auto;
+        }
+        ul.category-logo a {
+            display: block;
+        }
 
 /* = Aside Structure
 ----------------------------------------------- */

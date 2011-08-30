@@ -121,36 +121,63 @@ function schechter_widgets_init() {
     ) );
 }
 
-//add scphoto post type
-//      add_action('init', 'scphoto_post_type');
-function scphoto_post_type() 
+// category-logo shortcode, includes logo post-type posts for downloading
+function category_logo_func( $atts ) {
+    extract( shortcode_atts( array('category' => 'no category', 'title' => 'no title'), $atts ) );
+    $args = array(
+       'post_type' => 'logo',
+       'numberposts' => -1,
+       'post_status' => null,
+       'category' => $category
+      );
+    $tmplist = '<h2 class="category-logo">' . $title . '</h2><ul class="category-logo">';
+    $attachments = get_posts( $args );
+        if ( $attachments ) {
+            foreach ( $attachments as $attachment ) {
+                $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $attachment->ID ), 'full' );
+                $thumbURL = $thumb[0];
+                $tmplist = $tmplist . '<li>';
+                $tmplist = $tmplist . '<div><h3>' . apply_filters( 'the_title' , $attachment->post_title ) . '</h3><p>';
+                $tmplist = $tmplist . $attachment->post_content;
+                $tmplist = $tmplist . '<a href="' . $thumbURL . '" class="forced-download">Download</a></p></div>';
+                $tmplist = $tmplist . get_the_post_thumbnail($attachment->ID, 'thumbnail') . '</li>';
+                //$tmplist = $tmplist . '<img src="' . get_bloginfo('stylesheet_directory') . '/images/schechter-logo.gif" style="width: 180px;" /></li>';
+            }
+            return $tmplist . '</ul>';
+        }
+}
+add_shortcode( 'category-logo', 'category_logo_func' );
+
+//add logo post type
+add_action('init', 'logo_post_type');
+function logo_post_type() 
 {
   $labels = array(
-    'name' => _x('scphotos', 'post type general name'),
-    'singular_name' => _x('scphoto', 'post type singular name'),
-    'add_new' => _x('Add New', 'scphoto'),
-    'add_new_item' => __('Add New scphoto'),
-    'edit_item' => __('Edit scphoto'),
-    'new_item' => __('New scphoto'),
-    'all_items' => __('All scphotos'),
-    'view_item' => __('View scphoto'),
-    'search_items' => __('Search scphotos'),
-    'not_found' =>  __('No scphotos found'),
-    'not_found_in_trash' => __('No scphotos found in Trash'), 
+    'name' => _x('Logos', 'post type general name'),
+    'singular_name' => _x('Logo', 'post type singular name'),
+    'add_new' => _x('Add New', 'logo'),
+    'add_new_item' => __('Add New Logo'),
+    'edit_item' => __('Edit Logo'),
+    'new_item' => __('New Logo'),
+    'all_items' => __('All Logos'),
+    'view_item' => __('View Logo'),
+    'search_items' => __('Search Logos'),
+    'not_found' =>  __('No logos found'),
+    'not_found_in_trash' => __('No logos found in Trash'), 
     'parent_item_colon' => '',
-    'menu_name' => 'scphotos'
+    'menu_name' => 'Logos'
 
   );
   $args = array(
     'labels' => $labels,
     'public' => true,
     'hierarchical' => false,
-    'description' => 'Photo type post used for the photo library',
-    'supports' => array( 'title', 'excerpt', 'author', 'thumbnail', 'custom-fields' ),
-    'taxonomies' => array( 'category', 'post_tag' ),
+    'description' => 'Logo type post used for the logo library',
+    'supports' => array( 'title', 'editor', 'author', 'thumbnail' ),
+    'taxonomies' => array( 'category' ),
     'show_ui' => true,
     'show_in_menu' => true,
-    'menu_position' => 5,
+    'menu_position' => null,
     
     'show_in_nav_menus' => true,
     'publicly_queryable' => true,
@@ -161,7 +188,7 @@ function scphoto_post_type()
     'rewrite' => true,
     'capability_type' => 'post'
   ); 
-  register_post_type('sc_scphoto',$args);
+  register_post_type('logo',$args);
 }
 
 //add filter to ensure the text Book, or book, is displayed when user updates a book 

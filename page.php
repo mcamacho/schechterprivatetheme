@@ -34,7 +34,7 @@
             </header><!-- .entry-header -->
 
             <div class="entry-content">
-                <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'schechtertheme' ) ); ?>
+                <?php the_content(); ?>
             </div><!-- .entry-content -->
         </article><!-- #post-<?php the_ID(); ?> -->
     <?php endif; ?>
