@@ -141,7 +141,6 @@ function category_logo_func( $atts ) {
                 $tmplist = $tmplist . $attachment->post_content;
                 $tmplist = $tmplist . '<a href="' . $thumbURL . '" class="forced-download">Download</a></p></div>';
                 $tmplist = $tmplist . get_the_post_thumbnail($attachment->ID, 'thumbnail') . '</li>';
-                //$tmplist = $tmplist . '<img src="' . get_bloginfo('stylesheet_directory') . '/images/schechter-logo.gif" style="width: 180px;" /></li>';
             }
             return $tmplist . '</ul>';
         }
