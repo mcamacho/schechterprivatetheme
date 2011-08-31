@@ -253,6 +253,29 @@ form.searchform #searchsubmit {
         ul.category-logo a {
             display: block;
         }
+        #description {
+            margin-top: 15px;
+            padding-bottom:5px;
+            border-bottom:1px solid #000000;
+            font-family:proxima-nova, Arial, sans-serif;
+            font-size:14px;
+        }
+        #library {
+            overflow:hidden;
+            padding: 15px 0;
+        }
+        div.photo {
+            float:left;
+            width:218px;
+            height:179px;
+            margin-left:29px;
+        }
+        div.photo:first-child {
+            margin-left:0;
+        }
+        div.photo ul{
+            display:none;
+        }
 
 /* = Aside Structure
 ----------------------------------------------- */

@@ -4,6 +4,11 @@
  *  and a set of functions for the home login - register home page
  */
 
+function my_function_admin_bar($content) {
+	return ( current_user_can("administrator") ) ? $content : false;
+}
+add_filter( 'show_admin_bar' , 'my_function_admin_bar');
+
 //action added to redirect the site to the home login register page if the user hasn't more than a subscriber role
 add_action( 'template_redirect', 'schechter_private' );
 function schechter_private() {
@@ -134,12 +139,11 @@ function category_logo_func( $atts ) {
     $attachments = get_posts( $args );
         if ( $attachments ) {
             foreach ( $attachments as $attachment ) {
-                $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $attachment->ID ), 'full' );
-                $thumbURL = $thumb[0];
+                $thefile = get_post_meta($attachment->ID, 'file', true);
                 $tmplist = $tmplist . '<li>';
                 $tmplist = $tmplist . '<div><h3>' . apply_filters( 'the_title' , $attachment->post_title ) . '</h3><p>';
                 $tmplist = $tmplist . $attachment->post_content;
-                $tmplist = $tmplist . '<a href="' . $thumbURL . '" class="forced-download">Download</a></p></div>';
+                $tmplist = $tmplist . '<a href="' . $thefile . '" class="forced-download">Download</a></p></div>';
                 $tmplist = $tmplist . get_the_post_thumbnail($attachment->ID, 'thumbnail') . '</li>';
             }
             return $tmplist . '</ul>';
@@ -172,7 +176,7 @@ function logo_post_type()
     'public' => true,
     'hierarchical' => false,
     'description' => 'Logo type post used for the logo library',
-    'supports' => array( 'title', 'editor', 'author', 'thumbnail' ),
+    'supports' => array( 'title', 'editor', 'author', 'custom-fields', 'thumbnail' ),
     'taxonomies' => array( 'category' ),
     'show_ui' => true,
     'show_in_menu' => true,
@@ -189,6 +193,7 @@ function logo_post_type()
   ); 
   register_post_type('logo',$args);
 }
+
 
 //add filter to ensure the text Book, or book, is displayed when user updates a book 
 //      add_filter('post_updated_messages', 'scphoto_post_type_messages');

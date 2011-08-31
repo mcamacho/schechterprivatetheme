@@ -7,17 +7,20 @@
 <?php get_header(); ?>
 <section id="primary">
     <div id="content" role="main">
-      <img width="712" height="150" src="<?php echo content_url(); ?>/uploads/2011/08/private_schechter_header.jpg" class="attachment-post-thumbnail wp-post-image" alt="private_schechter_header" title="private_schechter_header">
+      <img width="720" height="180" src="<?php echo get_bloginfo('template_url'); ?>/images/Schechter_private_site_header.gif" class="attachment-post-thumbnail wp-post-image" alt="private_schechter_header" title="private_schechter_header">
     <?php if ( have_posts() ) : ?>
         <header class="page-header">
             <?php $cat = single_cat_title('', false); ?>
             <h1 class="page-title">Category: <?php echo $cat; ?></h1>
         </header>
+        <div id="description"><?php echo category_description(); ?></div>
+        <div id="library">
         <?php while ( have_posts() ) : the_post(); ?>
         <?php if (in_category($cat)) :?>
-            <div>
+            <div class="photo">
                 <?php
                 $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'large' );
+                $fullimage = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' );
                 $linkto = is_category('Grade Level') ? get_category_link(get_cat_ID(get_post_meta(get_the_ID(), 'category link', true))) : $thumb[0] ;?>
                 <a href="<?php echo $linkto ?>" <?php echo is_category('Grade Level') ? '' : 'class="lightbox"'?>>
                 <?php the_post_thumbnail('thumbnail'); ?>
@@ -35,10 +38,12 @@
                     echo $tags->name . ','; } ?>
                 </li>
                 <li><span>Usage Rights:</span><?php echo get_post_meta(get_the_ID(), 'usage rights', true); ?></li>
+                <li><a href="<?php echo $fullimage[0]; ?>" class="forced-download">DOWNLOAD</a></li>
                 </ul>
             </div>
         <?php endif; ?>
         <?php endwhile; ?>
+        </div>
     <?php else : ?>
         <article id="post-0" class="post no-results not-found">
             <header class="entry-header">

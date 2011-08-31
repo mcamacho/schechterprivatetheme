@@ -45,7 +45,7 @@
 	?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
-<?php if(is_category()) : ?><link rel="stylesheet" type="text/css" media="screen" href="<?php echo get_bloginfo( 'template_url' ); ?>/css/colorbox.css" /><?php endif; ?>
+<?php if(is_category() || is_page_template('tmpl-photo-search.php')) : ?><link rel="stylesheet" type="text/css" media="screen" href="<?php echo get_bloginfo( 'template_url' ); ?>/css/colorbox.css" /><?php endif; ?>
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
 <script type="text/javascript" src="http://use.typekit.com/glr8nqu.js"></script>
@@ -82,7 +82,11 @@
 				<ul id="top-menu">
 					<li id="tt-icon"><a href="http://twitter.com/SchechterTweets" title="twitter link" target="_blank" ></a></li>	
 					<li id="fb-icon"><a href="http://www.facebook.com/pages/New-York-NY/Solomon-Schechter-Day-School-Association/133659643316565" title="facebook link" target="_blank" ></a></li>
-					<li><a href="#" title="Logout">Login</a></li>
+					<?php if (is_user_logged_in()) : ?>
+						<li><a href="<?php echo wp_logout_url(home_url()); ?>" title="Logout">Logout</a></li>
+					<?php else : ?>
+						<li><a href="<?php /*echo wp_login_url( site_url('/schechter-identity/') );*/ ?>" title="Login">Login</a></li>
+					<?php endif; ?>
 					<li><a href="<?php echo site_url('/contact-us/'); ?>" title="Contact Us">Contact Us</a></li>
 				</ul><!-- #top-menu -->
 			</nav>
