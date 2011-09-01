@@ -1,13 +1,13 @@
 <?php
 /**
- * The template for displaying Search Results pages.
+ * The template for displaying Category pages.
  *
  */
 ?>
 <?php get_header(); ?>
 <section id="primary">
     <div id="content" role="main">
-      <img width="720" height="180" src="<?php echo get_bloginfo('template_url'); ?>/images/Schechter_private_site_header.gif" class="attachment-post-thumbnail wp-post-image" alt="private_schechter_header" title="private_schechter_header">
+      <img width="712" height="178" src="<?php echo get_bloginfo('template_url'); ?>/images/Schechter_private_site_header.gif" class="attachment-post-thumbnail wp-post-image" alt="private_schechter_header" title="private_schechter_header">
     <?php if ( have_posts() ) : ?>
         <header class="page-header">
             <?php $cat = single_cat_title('', false); ?>
@@ -16,13 +16,13 @@
         <div id="description"><?php echo category_description(); ?></div>
         <div id="library">
         <?php while ( have_posts() ) : the_post(); ?>
-        <?php if (in_category($cat)) :?>
+        <?php //if (in_category($cat)) :?>
             <div class="photo">
                 <?php
                 $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'large' );
                 $fullimage = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' );
-                $linkto = is_category('Grade Level') ? get_category_link(get_cat_ID(get_post_meta(get_the_ID(), 'category link', true))) : $thumb[0] ;?>
-                <a href="<?php echo $linkto ?>" <?php echo is_category('Grade Level') ? '' : 'class="lightbox"'?>>
+                $linkto = $thumb[0]; ?>
+                <a href="<?php echo $linkto ?>" class="lightbox">
                 <?php the_post_thumbnail('thumbnail'); ?>
                 </a>
                 <h2 class="entry-title">
@@ -41,7 +41,7 @@
                 <li><a href="<?php echo $fullimage[0]; ?>" class="forced-download">DOWNLOAD</a></li>
                 </ul>
             </div>
-        <?php endif; ?>
+        <?php //endif; ?>
         <?php endwhile; ?>
         </div>
     <?php else : ?>
