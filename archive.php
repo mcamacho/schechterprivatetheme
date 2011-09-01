@@ -16,7 +16,6 @@
         <div id="description"><?php echo category_description(); ?></div>
         <div id="library">
         <?php while ( have_posts() ) : the_post(); ?>
-        <?php //if (in_category($cat)) :?>
             <div class="photo">
                 <?php
                 $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'large' );
@@ -41,7 +40,6 @@
                 <li><a href="<?php echo $fullimage[0]; ?>" class="forced-download">DOWNLOAD</a></li>
                 </ul>
             </div>
-        <?php //endif; ?>
         <?php endwhile; ?>
         </div>
     <?php else : ?>

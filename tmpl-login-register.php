@@ -26,7 +26,9 @@
                 <h2>Login</h2>
                 <?php wp_login_form($args); ?>
             <?php if ( count($_POST) > 0 ) : ?>
+            <div class="register-response">
                 <?php echo private_home() ?>
+            </div>
             <?php endif; ?><!--endif POST variables-->
             </div><!--end left-col-->
             

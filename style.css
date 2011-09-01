@@ -240,7 +240,7 @@ form.searchform #searchsubmit {
             margin-bottom:8px;
         }
         ul.category-logo li {
-            width: 550px;
+            width: 590px;
             overflow: hidden;
         }
         ul.category-logo div {
@@ -402,8 +402,12 @@ body.search #content p {
 #sc-search-options h2{
 	font-size:20px;
 }
-#sc-search-options form {
+#sc-search-options form,
+#cloud-tag {
 	margin:10px;
+}
+#cloud-tag p{
+	padding-bottom:10px;
 }
 #sc-search-options form p {
 	float:left;

@@ -45,7 +45,7 @@
 	?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
-<?php if(is_category() || is_page_template('tmpl-photo-search.php')) : ?><link rel="stylesheet" type="text/css" media="screen" href="<?php echo get_bloginfo( 'template_url' ); ?>/css/colorbox.css" /><?php endif; ?>
+<?php if(is_search() || is_archive() || is_page_template('tmpl-photo-search.php')) : ?><link rel="stylesheet" type="text/css" media="screen" href="<?php echo get_bloginfo( 'template_url' ); ?>/css/colorbox.css" /><?php endif; ?>
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
 <script type="text/javascript" src="http://use.typekit.com/glr8nqu.js"></script>
