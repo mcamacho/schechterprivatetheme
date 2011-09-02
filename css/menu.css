@@ -42,4 +42,5 @@
 
 #main li.current-menu-item > a{
     background: transparent url(../images/selected-menu.png) no-repeat left center;
+    color:#FFE5AE;
 }

@@ -25,6 +25,7 @@ input, textarea, #top-head, #colophon, ul.menu, h1, h2, h3, label {
 }
 .entry-content{
 	line-height:1.7em;
+margin-top:20px;
 }
 
 a {
@@ -199,7 +200,7 @@ form.searchform #searchsubmit {
 	h1.page-title {
 		margin:5px 0 10px;
 		font-size:36px;
-		color:#004250;
+		color:#FFFFFF;
 	}
 	h1.page-title span{
 		display:block;
@@ -216,10 +217,15 @@ form.searchform #searchsubmit {
 	h2.entry-title a:visited {
 		color:#773141;
 	}
+    div.entry-content h2 {
+      font-weight:bold;
+      color:#96172e;
+    }
 	div.entry-content h3 {
 		font-size:14px;
 		line-height:18px;
 		font-weight:bold;
+        color:#96172e;
 	}
 	div.entry-content p {
 		margin-bottom:1em;
@@ -236,7 +242,7 @@ form.searchform #searchsubmit {
 	}
         
         h2.category-logo {
-            border-bottom:1px solid #000000;
+            border-bottom:2px dashed #FFE5AE;
             margin-bottom:8px;
         }
         ul.category-logo li {
@@ -250,19 +256,26 @@ form.searchform #searchsubmit {
         ul.category-logo p {
             margin-bottom: auto;
         }
-        ul.category-logo a {
+        div.entry-content ul.category-logo a {
+            background-color: #004250;
+            font-family:proxima-nova, Arial, sans-serif;
+            color: #FFFFFF;
             display: block;
+            padding: 4px 22px 2px;
+            text-transform: uppercase;
+            width: 74px;
         }
         #description {
             margin-top: 15px;
             padding-bottom:5px;
-            border-bottom:1px solid #000000;
+            border-bottom:2px dashed #FFE5AE;
             font-family:proxima-nova, Arial, sans-serif;
+            font-weight:bold;
             font-size:14px;
         }
         #library {
             overflow:hidden;
-            padding: 15px 0;
+            /*padding: 15px 0;*/
         }
         div.photo {
             float:left;
@@ -276,6 +289,9 @@ form.searchform #searchsubmit {
         div.photo ul{
             display:none;
         }
+        div.photo h2{
+            line-height:1;
+        }
 
 /* = Aside Structure
 ----------------------------------------------- */
@@ -286,9 +302,9 @@ form.searchform #searchsubmit {
 	/*width: 18.8%;*/
 }
 div.footer-widgets {
-  border:1px solid #000000;
-  border-width:1px 0;
-  padding:10px 0;
+  border:2px dashed #FFE5AE;
+  border-width:2px 0;
+  padding:15px 0 12px;
   overflow:hidden;
 }
 aside.img_txt_wgt {

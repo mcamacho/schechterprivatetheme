@@ -29,7 +29,7 @@
         ?>
             <div id="library">
             <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-                <div class="photo">
+                <div class="photo entry-content">
                     <?php
                     $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'large' );
                     $fullimage = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' );
