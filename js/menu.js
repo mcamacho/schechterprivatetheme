@@ -20,7 +20,9 @@ jQuery(function() {
       .end()
       .find('a').css({'margin-left':'5px'})
       .end()
-      .find('ul ul').css({'margin-left':'10px'});
+      .find('ul ul').css({'margin-left':'10px'})
+      .find('a').css({'width':'187px'});
+    jQuery('.current-menu-item > a').addClass('witharrow');
   
   //interactive behavior----------------
   jQuery('#main ul.menu > li').not('li.current-menu-ancestor, li.current-menu-item').hover(

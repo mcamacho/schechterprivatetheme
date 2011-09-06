@@ -14,7 +14,8 @@ get_header(); ?>
 
 		<div id="primary">
 			<div id="content" role="main">
-			<strong style="color:red;">Using index as default markup</strong>
+			<img width="712" height="178" src="<?php echo get_bloginfo('template_url'); ?>/images/Schechter_private_site_header.gif" class="attachment-post-thumbnail wp-post-image" alt="private_schechter_header" title="private_schechter_header">
+
 			<?php if ( have_posts() ) : ?>
 				<?php while ( have_posts() ) : the_post(); ?>
 				

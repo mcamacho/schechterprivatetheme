@@ -22,6 +22,7 @@
                     <?php the_content(); ?>
                 </div><!-- .entry-content -->
             </article><!-- #post-<?php the_ID(); ?> -->
+            <div class="dotline"></div>
             <div id="supplementary" class="footer-widgets" >
             <?php if ( is_active_sidebar( 'sidebar-home' ) && $post->menu_order == 0 ) : ?>
                 <?php dynamic_sidebar( 'sidebar-home' ); ?>
@@ -41,6 +42,7 @@
                 <?php dynamic_sidebar( 'sidebar-m5' ); ?>
             <?php endif; ?>
             </div><!-- #supplementary -->
+            <div class="dotline"></div>
         </div><!-- #content -->
     </div><!-- #primary -->
 <?php get_sidebar(); ?>
