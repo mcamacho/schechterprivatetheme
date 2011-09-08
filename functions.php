@@ -4,6 +4,29 @@
  *  and a set of functions for the home login - register home page
  */
 
+function insert_attachment($file_handler,$post_id,$setthumb='false') {
+	// check to make sure its a successful upload
+	if ($_FILES[$file_handler]['error'] !== UPLOAD_ERR_OK) __return_false();
+
+	require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+	require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+	require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+
+	$attach_id = media_handle_upload( $file_handler, $post_id );
+
+	if ($setthumb) update_post_meta($post_id,'_thumbnail_id',$attach_id);
+	return $attach_id;
+}
+
+
+add_filter('upload_mimes', 'custom_upload_mimes');
+function custom_upload_mimes ( $existing_mimes=array() ) {
+	// add the file extension to the array
+	$existing_mimes['eps'] = 'application/eps';
+        // call the modified list of extensions
+	return $existing_mimes;
+}
+
 //filter that allows the front page admin bar just for the administrator role
 add_filter( 'show_admin_bar' , 'my_function_admin_bar');
 function my_function_admin_bar($content) {
@@ -214,6 +237,41 @@ function logo_post_type()
   ); 
   register_post_type('logo',$args);
 }
+
+add_action("admin_init", "add_logo_meta_box");
+function add_logo_meta_box(){
+  add_meta_box("logo-file-path", "Logo File", "logo_meta_box", "logo");
+}
+ 
+function logo_meta_box(){
+  global $post;
+  $custom = get_post_custom($post->ID);
+  $file_path = isset($custom["file"][0]) ? $custom["file"][0] : '';
+  echo '<label>Logo File:</label>';
+  echo '<select name="file-path" >';
+  echo '<option value="" >Select</option>';
+  global $wpdb;
+	$the_query = $wpdb->get_results("SELECT post_title, guid
+					FROM $wpdb->posts
+					WHERE post_type = 'attachment' AND post_excerpt = 'Logo'");
+	if(count($the_query)>0):
+	foreach( $the_query as $post_results ) :
+		$selected = $post_results->guid == $file_path ? ' selected="selected"' : '';
+		echo '<option value="'. $post_results->guid .'" '. $selected .' >'. $post_results->post_title .'</option>';
+	endforeach; endif;
+  echo '</select>';
+}
+add_action('save_post', 'update_logo_field');
+function update_logo_field(){
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+      return;
+	if ( isset($_POST['post_type']) && 'logo' == $_POST['post_type'] ) 
+	{
+		global $post;
+		update_post_meta($post->ID, "file", $_POST["file-path"]);
+	}
+}
+
 
 /*
  * set of functions for the login register home page
