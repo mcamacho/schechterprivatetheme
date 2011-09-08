@@ -21,9 +21,12 @@
         $gradelevel = $_GET['grade_level'];
         $category = $_GET['category'];
         //first construct the query for gradelevel, category and keyword using wp_query
-        $graargs = $gradelevel == 'all' ? 'pre-5th,6th-8th,9th-12' :  $gradelevel;
-        $catargs = $category == 'all' ? 'general-studies,jewish-studies,physical-education,prayer-ritual,other' :  $category;
-        $args = 'category_name=' . $graargs . ',' . $catargs;
+        $args = array(
+        'post_type' => 'post',
+        'numberposts' => -1,
+        'cat' => $category,
+        'tax_query' => array(array('taxonomy'=>'gradelevel','field'=>'id','terms'=>$gradelevel))
+        );
         //make the query
         $the_query = new WP_Query( $args );
         ?>
@@ -71,23 +74,25 @@
             <form role="search" method="get" id="categorysearch">
               <!--the grade_level and category options are hard coded-->
               <p class="wide"><label for="grade_level">Select Grade Level </label>
-              <select id="grade_level" name="grade_level" >
+                <?php wp_dropdown_categories( 'name=grade_level&taxonomy=gradelevel&hide_empty=0' ); ?>
+              <!--<select id="grade_level" name="grade_level" >
                       <option value="all">Any</option>
                       <option value="pre-5th">Pre 5th</option>
                       <option value="6th-8th">6th 8th</option>
                       <option value="9th-12th">9th 12th</option>
-              </select></p>
+              </select>--></p>
               <p class="downl">+</p>
               
               <p class="wide"><label for="category">Select Category</label>
-              <select id="category" name="category" >
+                <?php wp_dropdown_categories( 'name=category&taxonomy=category&hide_empty=0&orderby=name' ); ?>
+              <!--<select id="category" name="category" >
                       <option value="all">Any</option>
                       <option value="general-studies">General Studies</option>
                       <option value="jewish-studies">Jewish Studies</option>
                       <option value="physical-education">Physical Education/Sports</option>
                       <option value="prayer-ritual">Prayer/Ritual</option>
                       <option value="other">Other</option>
-              </select></p>
+              </select>--></p>
               
               <input type="submit" value="SEARCH" class="downl" />
             </form>

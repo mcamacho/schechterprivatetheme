@@ -5,6 +5,7 @@
  */
 ?>
 <?php
+    
 if( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) &&  $_POST['action'] == "new_post") {
 
 	// Do some minor form validation to make sure there is content
@@ -13,38 +14,45 @@ if( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) &&  $_POS
 	} else {
 		echo 'Please enter the wine name';
 	}
-	if (isset ($_POST['description'])) {
-		$description = $_POST['description'];
+	if (isset ($_POST['fdescription'])) {
+		$description = $_POST['fdescription'];
 	} else {
 		echo 'Please enter some notes';
 	}
-
+        
 	$tags = $_POST['post_tags'];
-	//$winerating = $_POST['winerating'];
+	$usagerights = $_POST['usagerights'];
+        
+        if($_POST['gradelevel']==0){
+            $alltax = get_categories(array('taxonomy'=>'gradelevel','hide_empty'=>0));
+            $i=0;$taxids = array();
+            foreach($alltax as $tax){$taxids[$i]=$tax->term_id;$i++;}
+        }else{$taxids = array($_POST['gradelevel']);}
 
 	// ADD THE FORM INPUT TO $new_post ARRAY
 	$new_post = array(
 	'post_title'	=>	$title,
 	'post_content'	=>	$description,
 	'post_category'	=>	array($_POST['cat']),  // Usable for custom taxonomies too
+        'tax_input'     =>      array( 'gradelevel' => $taxids),
 	'tags_input'	=>	array($tags),
 	'post_status'	=>	'publish',           // Choose: publish, preview, future, draft, etc.
-	'post_type'	=>	'post'//,  'post',page' or use a custom post type if you want to
-	/*'winerating'	=>	$winerating*/
+	'post_type'	=>	'post',  //'post',page' or use a custom post type if you want to
+	'usagerights'	=>	$usagerights
 	);
 
 	//SAVE THE POST
 	$pid = wp_insert_post($new_post);
 
-             //KEEPS OUR COMMA SEPARATED TAGS AS INDIVIDUAL
+        //KEEPS OUR COMMA SEPARATED TAGS AS INDIVIDUAL
 	wp_set_post_tags($pid, $_POST['post_tags']);
 
-	//REDIRECT TO THE NEW POST ON SAVE
-	$link = get_permalink( $pid );
-	wp_redirect( $link );
+	//REDIRECT TO PHOTO LIBRARY PAGE
+	//$link = get_permalink( $pid );
+	wp_redirect( home_url() . '/photo-library/' );
 
 	//ADD OUR CUSTOM FIELDS
-	add_post_meta($pid, 'rating', $winerating, true); 
+	add_post_meta($pid, 'usage rights', $usagerights, true); 
 
 	//INSERT OUR MEDIA ATTACHMENTS
 	if ($_FILES) {
@@ -74,51 +82,60 @@ do_action('wp_insert_post', 'wp_insert_post');
     <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
         <div class="entry-content">
             <?php the_content(); ?>
-        <div class="wpcf7">
-		<form id="new_post" name="new_post" method="post" action="" class="wpcf7-form" enctype="multipart/form-data">
+            <div class="upload-photos">
+		<form id="new_post" name="new_post" method="post" action="" class="upload-photos-form" enctype="multipart/form-data">
 			<!-- post name -->
 			<fieldset name="name">
-				<label for="title">Photo Name:</label>
+				<label for="title">IMAGE TITLE</label>
 				<input type="text" id="title" value="" tabindex="5" name="title" />
+			</fieldset>
+                        
+                        <!-- post Content -->
+			<fieldset class="content">
+				<label for="fdescription">DESCRIPTION (LIMIT 80 CHARACTERS)</label>
+				<input type="text" id="fdescription" value="" tabindex="10" name="fdescription" maxlength="80" />
+			</fieldset>
+
+                        <!-- post Grade Level -->
+			<fieldset class="category">
+				<label for="gradelevel">GRADE LEVEL</label>
+				<?php wp_dropdown_categories( 'name=gradelevel&tab_index=15&taxonomy=gradelevel&hide_empty=0&show_option_all=All' ); ?>
 			</fieldset>
 
 			<!-- post Category -->
 			<fieldset class="category">
-				<label for="cat">Category:</label>
-				<?php wp_dropdown_categories( 'tab_index=10&taxonomy=category&hide_empty=0' ); ?>
-			</fieldset>
-
-			<!-- post Content -->
-			<fieldset class="content">
-				<label for="description">Description:</label>
-				<textarea id="description" tabindex="15" name="description" cols="80" rows="10"></textarea>
-			</fieldset>
-
-			<!-- images -->
-			<fieldset class="image">
-				<label for="image_photo">Front of the Bottle</label>
-				<input type="file" name="image_photo" id="image_photo" tabindex="25" />
+				<label for="cat">CATEGORY</label>
+				<?php wp_dropdown_categories( 'tab_index=20&taxonomy=category&hide_empty=0&orderby=name' ); ?>
 			</fieldset>
 
 			<!-- post tags -->
 			<fieldset class="tags">
 				<label for="post_tags">Additional Keywords (comma separated):</label>
-				<input type="text" value="" tabindex="35" name="post_tags" id="post_tags" />
+				<input type="text" value="" tabindex="25" name="post_tags" id="post_tags" />
 			</fieldset>
-
+                        
+                        <!-- post Usage Rights -->
+			<fieldset class="content">
+				<label for="usagerights">USAGE RIGHTS (LIMIT 80 CHARACTERS)</label>
+				<input type="text" id="usagerights" value="" tabindex="30" name="usagerights" maxlength="80" />
+			</fieldset>
+                        
+			<!-- images -->
+			<fieldset class="image">
+				<label for="image_photo">Chose File to Upload</label>
+				<input type="file" name="image_photo" id="image_photo" tabindex="45" />
+                                <label>(Maximum upload file size: 32MB)</label>
+			</fieldset>
+                        
 			<fieldset class="submit">
-				<input type="submit" value="Post Review" tabindex="40" id="submit" name="submit" />
+				<input type="submit" value="UPLOAD" tabindex="50" id="submit" name="submit" style="width:auto;" />
 			</fieldset>
 
 			<input type="hidden" name="action" value="new_post" />
 			<?php wp_nonce_field( 'new-post' ); ?>
-		</form>
-		</div> <!-- END WPCF7 -->
-
-		<!-- END OF FORM -->
-						<?php //wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'twentyten' ), 'after' => '</div>' ) ); ?>
-						<?php edit_post_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
-					</div><!-- .entry-content -->
+		</form><!-- END OF FORM -->
+	    </div> <!-- END upload-photos -->
+        </div><!-- .entry-content -->
 
         <?php endwhile; // end of the loop. ?>
     

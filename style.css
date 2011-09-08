@@ -493,3 +493,17 @@ article.school_item div.school-content ul{
 article.school_item div.school-content li:first-child{
 	font-weight:bold;
 }
+
+/* = Upload Photos Template
+----------------------------------------------- */
+div.upload-photos {
+    width:80%;
+    margin:0 auto;
+}
+div.upload-photos fieldset{
+    margin-bottom:10px;
+}
+div.upload-photos input,
+div.upload-photos select{
+    width:100%;
+}

@@ -4,6 +4,7 @@
  *  and a set of functions for the home login - register home page
  */
 
+//function that makes possible the upload of files on the upload photos template
 function insert_attachment($file_handler,$post_id,$setthumb='false') {
 	// check to make sure its a successful upload
 	if ($_FILES[$file_handler]['error'] !== UPLOAD_ERR_OK) __return_false();
@@ -18,7 +19,7 @@ function insert_attachment($file_handler,$post_id,$setthumb='false') {
 	return $attach_id;
 }
 
-
+//filter that extends the mime upload types
 add_filter('upload_mimes', 'custom_upload_mimes');
 function custom_upload_mimes ( $existing_mimes=array() ) {
 	// add the file extension to the array
@@ -172,13 +173,13 @@ add_shortcode( 'category-logo', 'category_logo_func' );
 function category_logo_func( $atts ) {
     extract( shortcode_atts( array('category' => 'no category', 'title' => 'no title'), $atts ) );
     $args = array(
-       'post_type' => 'logo',
-       'numberposts' => -1,
-       'post_status' => null,
-	   'order' => 'ASC',
-	   'orderby' => 'meta_value_num',
-	   'meta_key' => 'order',
-       'category' => $category
+        'post_type' => 'logo',
+        'numberposts' => -1,
+        'post_status' => null,
+        'order' => 'ASC',
+        'orderby' => 'meta_value_num',
+        'meta_key' => 'order',
+        'logotype' => $category
       );
     $tmplist = '<h2 class="category-logo">' . $title . '</h2><ul class="category-logo">';
     $attachments = get_posts( $args );
@@ -221,7 +222,7 @@ function logo_post_type()
     'hierarchical' => false,
     'description' => 'Logo type post used for the logo library',
     'supports' => array( 'title', 'editor', 'author', 'custom-fields', 'thumbnail' ),
-    'taxonomies' => array( 'category' ),
+    'taxonomies' => array( 'logotype' ),
     'show_ui' => true,
     'show_in_menu' => true,
     'menu_position' => null,
@@ -236,6 +237,34 @@ function logo_post_type()
     'capability_type' => 'post'
   ); 
   register_post_type('logo',$args);
+}
+
+add_action( 'init', 'additional_taxonomies' );
+function additional_taxonomies() {
+	// create a new taxonomy
+	register_taxonomy(
+		'gradelevel',
+		'post',
+		array(
+                        'hierarchical' => true,
+			'label' => __( 'Grade Level' ),
+			'sort' => true,
+			'args' => array( 'orderby' => 'term_order' ),
+			'rewrite' => array( 'slug' => 'gradelevel' )
+		)
+	);
+        
+        register_taxonomy(
+		'logotype',
+		'logo',
+		array(
+                        'hierarchical' => true,
+			'label' => __( 'Logo Types' ),
+			'sort' => true,
+			'args' => array( 'orderby' => 'term_order' ),
+			'rewrite' => array( 'slug' => 'logotype' )
+		)
+	);
 }
 
 add_action("admin_init", "add_logo_meta_box");

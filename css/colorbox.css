@@ -25,7 +25,7 @@
         #cboxError{padding:50px; border:1px solid #ccc;}
         #cboxLoadedContent{/*border:5px solid #000; background:#fff;*/}
         #cboxTitle{position:absolute; /*top:-20px;*/bottom:-145px; left:0; color:#ccc;font-family:proxima-nova, Arial, sans-serif;}
-        #cboxTitle li{margin-bottom:8px;}
+        #cboxTitle li{margin-bottom:8px;width:600px;}
         #cboxTitle li:last-child{padding-top:10px;}
         #cboxTitle span{display:inline-block;width:125px;text-transform:uppercase;}
         #cboxCurrent{position:absolute; top:-20px; right:0px; color:#ccc;}
