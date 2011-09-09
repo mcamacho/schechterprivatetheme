@@ -25,6 +25,7 @@
         'post_type' => 'post',
         'numberposts' => -1,
         'cat' => $category,
+        'paged' => get_query_var('paged'),
         'tax_query' => array(array('taxonomy'=>'gradelevel','field'=>'id','terms'=>$gradelevel))
         );
         //make the query
@@ -58,6 +59,7 @@
                 </div>
             <?php endwhile; ?>
             </div>
+        <?php wp_pagenavi(array( 'query' => $the_query )); ?>
         <?php
         //Reset Post Data
         wp_reset_postdata();
@@ -75,24 +77,12 @@
               <!--the grade_level and category options are hard coded-->
               <p class="wide"><label for="grade_level">Select Grade Level </label>
                 <?php wp_dropdown_categories( 'name=grade_level&taxonomy=gradelevel&hide_empty=0' ); ?>
-              <!--<select id="grade_level" name="grade_level" >
-                      <option value="all">Any</option>
-                      <option value="pre-5th">Pre 5th</option>
-                      <option value="6th-8th">6th 8th</option>
-                      <option value="9th-12th">9th 12th</option>
-              </select>--></p>
+              </p>
               <p class="downl">+</p>
               
               <p class="wide"><label for="category">Select Category</label>
                 <?php wp_dropdown_categories( 'name=category&taxonomy=category&hide_empty=0&orderby=name' ); ?>
-              <!--<select id="category" name="category" >
-                      <option value="all">Any</option>
-                      <option value="general-studies">General Studies</option>
-                      <option value="jewish-studies">Jewish Studies</option>
-                      <option value="physical-education">Physical Education/Sports</option>
-                      <option value="prayer-ritual">Prayer/Ritual</option>
-                      <option value="other">Other</option>
-              </select>--></p>
+              </p>
               
               <input type="submit" value="SEARCH" class="downl" />
             </form>

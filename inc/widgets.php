@@ -19,8 +19,8 @@ class Image_Text_Widget extends WP_Widget {
 		$plink = apply_filters( 'widget_link', $instance['plink'], $instance );
 		$elink = apply_filters( 'widget_link', $instance['elink'], $instance );
 		echo $before_widget;?>
-		<?php
-		    if ($optlink=='cat'){$link = get_category_link( $clink );}
+		<?php 
+		    if ($optlink=='cat'){$link = strlen(get_category_link( $clink ))>1 ? get_category_link( $clink ) : get_term_link( (int)$clink, 'gradelevel' );}
 		    elseif($optlink=='pag'){$link = get_page_link( $plink );}
 		    else{$link = $elink;}
 		?>
@@ -87,7 +87,8 @@ class Image_Text_Widget extends WP_Widget {
 			$the_query = $wpdb->get_results("SELECT $wpdb->terms.term_id, $wpdb->terms.name
 							FROM $wpdb->terms, $wpdb->term_taxonomy
 							WHERE $wpdb->terms.term_id = $wpdb->term_taxonomy.term_id
-							AND $wpdb->term_taxonomy.taxonomy =  'category'
+							AND ($wpdb->term_taxonomy.taxonomy =  'category'
+                                                        OR $wpdb->term_taxonomy.taxonomy =  'gradelevel')
 							ORDER BY $wpdb->terms.name ASC ");
 			foreach( $the_query as $post_results ) :
 				$selected = $post_results->term_id == $instance['clink'] ? ' selected="selected"' : '';

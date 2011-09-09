@@ -116,8 +116,8 @@ do_action('wp_insert_post', 'wp_insert_post');
                         
                         <!-- post Usage Rights -->
 			<fieldset class="content">
-				<label for="usagerights">USAGE RIGHTS (LIMIT 80 CHARACTERS)</label>
-				<input type="text" id="usagerights" value="" tabindex="30" name="usagerights" maxlength="80" />
+				<label for="usagerights">USAGE RIGHTS (LIMIT 200 CHARACTERS)</label>
+				<textarea id="usagerights" tabindex="30" name="usagerights" rows="3" maxlength="200" ></textarea>
 			</fieldset>
                         
 			<!-- images -->

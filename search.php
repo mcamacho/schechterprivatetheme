@@ -63,7 +63,7 @@ get_header(); ?>
 					</div><!-- .entry-content -->
 
 			<?php endif; ?>
-
+                        <?php wp_pagenavi(); ?>
 			</div><!-- #content -->
 		</section><!-- #primary -->
 

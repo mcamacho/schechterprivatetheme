@@ -20,7 +20,7 @@ body {
 	font-size: 13px;
 	font-family: Georgia, serif;
 }
-input, textarea, #top-head, #colophon, ul.menu, h1, h2, h3, label {
+input, textarea, #top-head, #colophon, ul.menu, h1, h2, h3, label, div.wp-pagenavi{
 	font-family: proxima-nova, Arial, sans-serif;
 }
 .entry-content{
@@ -246,12 +246,13 @@ form.searchform #searchsubmit {
             margin-bottom:8px;
         }
         ul.category-logo li {
-            width: 590px;
+            width: 640px;
+            margin-bottom:12px;
             overflow: hidden;
         }
         ul.category-logo div {
             float: right;
-            width: 350px;
+            width: 400px;
         }
         ul.category-logo p {
             margin-bottom: auto;
@@ -504,6 +505,19 @@ div.upload-photos fieldset{
     margin-bottom:10px;
 }
 div.upload-photos input,
-div.upload-photos select{
+div.upload-photos select,
+div.upload-photos textarea{
     width:100%;
+}
+
+/* = extended navigation for display pages
+----------------------------------------------- */
+div.wp-pagenavi a{
+    color: #96172E;
+}
+div.wp-pagenavi span.current{
+    font-weight: bold;
+}
+div.wp-pagenavi a:hover{
+    text-decoration:underline;
 }

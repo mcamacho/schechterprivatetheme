@@ -35,33 +35,17 @@ jQuery(function() {
       jQuery('a',this).css('color','#731B36');
       }
     );
-  /*jQuery('#main ul.menu > li.current-menu-parent, #main ul.menu > li.current-menu-item').siblings().hover(
-    function() {
-      jQuery(this).css('min-height','77px')
-                  .children('ul:hidden').show()
-                                        .siblings('a')
-                                        .css('padding-top','18px')
-                                        .css('height','auto');
-      },
-    function() {
-      jQuery(this).children('ul').hide()
-                                .siblings('a')
-                                .css('padding-top','37px')
-                                .css('height','40px');
-      }
-    );*/
   
-  //change title style for hover-tmpl
-  //$specialTitle = jQuery('article.hero-footer h1.entry-title');
-  //if($specialTitle.length > 0){
-  //  jQuery($specialTitle).each(function(i,val){
-  //    $titletext = jQuery(val).text();
-  //    $firstword = $titletext.indexOf(' ') > 0 ? $titletext.substr(0,$titletext.indexOf(' ')) : $titletext ;
-  //    $titletext = $titletext.replace($firstword,'<span>' + $firstword + '</span>');
-  //    jQuery(val).html($titletext);
-  //    });
-  //}
-  
-  //add link to quote paragraph
-  //jQuery('#aside_quote p').wrapInner('<a href="' + jQuery('#aside_quote li a').attr('href') + '" />');
+  //other functions
+    jQuery('textarea[maxlength]').keyup(function(){
+            var max = parseInt(jQuery(this).attr('maxlength'));
+            if(jQuery(this).val().length > max){
+                    jQuery(this).val(jQuery(this).val().substr(0, jQuery(this).attr('maxlength')));
+            }
+    });
+    jQuery('div.wp-pagenavi').children()
+            .not('span.pages').not(':last')
+            .each(function(){jQuery(this).after('<span> | </span>');
+    });
+    
 });

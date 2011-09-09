@@ -53,6 +53,7 @@
             </div><!-- .entry-content -->
         </article><!-- #post-0 -->
     <?php endif; ?>
+    <?php wp_pagenavi(); ?>
     </div><!-- #content -->
 </section><!-- #primary -->
 <?php get_sidebar(); ?>
