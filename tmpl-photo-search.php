@@ -48,10 +48,10 @@
                     <li><span>Name:</span><?php the_title(); ?></li>
                     <li><span>Description:</span><?php echo get_the_content(); ?></li>
                     <li><span>Categories:</span><?php foreach((get_the_category()) as $category) { 
-                        echo $category->cat_name . ','; } ?>
+                        echo $category->cat_name . ', '; } ?>
                     </li>
                     <li><span>Tags:</span><?php foreach((get_the_tags()) as $tags) { 
-                        echo $tags->name . ','; } ?>
+                        echo $tags->name . ', '; } ?>
                     </li>
                     <li><span>Usage Rights:</span><?php echo get_post_meta(get_the_ID(), 'usage rights', true); ?></li>
                     <li><span><a href="<?php echo $fullimage[0]; ?>" class="forced-download">DOWNLOAD</a></span></li>
@@ -76,12 +76,12 @@
             <form role="search" method="get" id="categorysearch">
               <!--the grade_level and category options are hard coded-->
               <p class="wide"><label for="grade_level">Select Grade Level </label>
-                <?php wp_dropdown_categories( 'name=grade_level&taxonomy=gradelevel&hide_empty=0' ); ?>
+                <?php wp_dropdown_categories( 'name=grade_level&taxonomy=gradelevel&hide_empty=0&orderby=slug' ); ?>
               </p>
               <p class="downl">+</p>
               
               <p class="wide"><label for="category">Select Category</label>
-                <?php wp_dropdown_categories( 'name=category&taxonomy=category&hide_empty=0&orderby=name' ); ?>
+                <?php wp_dropdown_categories( 'name=category&taxonomy=category&hide_empty=0&orderby=slug' ); ?>
               </p>
               
               <input type="submit" value="SEARCH" class="downl" />
@@ -90,13 +90,6 @@
               <input type="hidden" name="post_type" value="post" />
               <p class="wide"><label for="keyword">Enter Key Word</label>
               <input name="s" id="ps" type="text" /></p>
-              <!--<select id="tag" name="tag">
-                <option value="">Select</option>
-                <?php //$tags = get_tags(array('fields'=>'names'));?>
-                <?php //foreach ($tags as $tag) : ?>
-                <option value="<?php //echo $tag; ?>"><?php //echo $tag; ?></option>
-                <?php //endforeach; ?>
-              </select>-->
               <input type="submit" value="SEARCH" class="downl" />
             </form>
             <div id="cloud-tag">

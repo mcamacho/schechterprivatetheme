@@ -99,13 +99,13 @@ do_action('wp_insert_post', 'wp_insert_post');
                         <!-- post Grade Level -->
 			<fieldset class="category">
 				<label for="gradelevel">GRADE LEVEL</label>
-				<?php wp_dropdown_categories( 'name=gradelevel&tab_index=15&taxonomy=gradelevel&hide_empty=0&show_option_all=All' ); ?>
+				<?php wp_dropdown_categories( 'name=gradelevel&tab_index=15&taxonomy=gradelevel&hide_empty=0&show_option_all=All&orderby=slug' ); ?>
 			</fieldset>
 
 			<!-- post Category -->
 			<fieldset class="category">
 				<label for="cat">CATEGORY</label>
-				<?php wp_dropdown_categories( 'tab_index=20&taxonomy=category&hide_empty=0&orderby=name' ); ?>
+				<?php wp_dropdown_categories( 'tab_index=20&taxonomy=category&hide_empty=0&orderby=slug' ); ?>
 			</fieldset>
 
 			<!-- post tags -->

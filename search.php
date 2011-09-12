@@ -40,10 +40,10 @@ get_header(); ?>
                         <li><span>Name:</span><?php the_title(); ?></li>
                         <li><span>Description:</span><?php echo get_the_content(); ?></li>
                         <li><span>Categories:</span><?php foreach((get_the_category()) as $category) { 
-                            echo $category->cat_name . ','; } ?>
+                            echo $category->cat_name . ', '; } ?>
                         </li>
                         <li><span>Tags:</span><?php foreach((get_the_tags()) as $tags) { 
-                            echo $tags->name . ','; } ?>
+                            echo $tags->name . ', '; } ?>
                         </li>
                         <li><span>Usage Rights:</span><?php echo get_post_meta(get_the_ID(), 'usage rights', true); ?></li>
                         <li><span><a href="<?php echo $fullimage[0]; ?>" class="forced-download">DOWNLOAD</a></span></li>
