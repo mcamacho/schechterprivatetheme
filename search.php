@@ -25,7 +25,7 @@ get_header(); ?>
 					</h2>
 					<div class="entry-content"><?php the_excerpt(); ?></div>
                 <?php elseif ( get_post_type(get_the_ID()) == 'post' && $_GET['post_type'] == 'post' ) : ?>
-                    <div class="photo">
+                    <div class="photo entry-content">
                         <?php
                         $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'large' );
                         $fullimage = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' );
@@ -46,7 +46,7 @@ get_header(); ?>
                             echo $tags->name . ','; } ?>
                         </li>
                         <li><span>Usage Rights:</span><?php echo get_post_meta(get_the_ID(), 'usage rights', true); ?></li>
-                        <li><a href="<?php echo $fullimage[0]; ?>" class="forced-download">DOWNLOAD</a></li>
+                        <li><span><a href="<?php echo $fullimage[0]; ?>" class="forced-download">DOWNLOAD</a></span></li>
                         </ul>
                     </div>
 				<?php endif; endwhile; ?>

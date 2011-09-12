@@ -104,6 +104,9 @@ div.division {
     text-align: right;
     width:460px;
 }
+#ie6 #top-head {
+	right:20px;
+}
 
 #top-menu {
     margin-right:30px;
@@ -125,6 +128,10 @@ div.division {
 footer#colophon a{
 	background:transparent url(./images/button-icon.png) left center no-repeat;
 }
+#ie6 #top-menu a,
+#ie6 footer#colophon a{
+	background:transparent url(./images/button-icon.gif) left center no-repeat;
+}
 
 #top-menu #tt-icon ,
 #top-menu #fb-icon {
@@ -140,9 +147,11 @@ footer#colophon a{
 	height:22px;
 	width:22px;
 }
+#ie6 #tt-icon a,
 #tt-icon a{
     background:url(./images/tt.gif) no-repeat center;
 }
+#ie6 #fb-icon a,
 #fb-icon a{
     background:url(./images/fb.gif) no-repeat center;
 }
@@ -257,7 +266,8 @@ form.searchform #searchsubmit {
         ul.category-logo p {
             margin-bottom: auto;
         }
-        div.entry-content ul.category-logo a {
+        div.entry-content ul.category-logo a,
+        div.entry-content ul.category-logo a:visited {
             background-color: #004250;
             font-family:proxima-nova, Arial, sans-serif;
             color: #FFFFFF;
@@ -281,7 +291,7 @@ form.searchform #searchsubmit {
         }
         #ie6 #library {
             margin-left:-28px;
-            width:752px;
+            width:762px;
         }
         div.photo {
             float:left;
@@ -440,11 +450,20 @@ body.search #content p {
 	width:122px;
 }
 #sc-search-options p.downl{
-	margin: 18px 12px 0 10px;
+	margin: 18px 14px 0 6px;
 	font-size:2em;
 }
 #sc-search-options input.downl{
-	margin-top: 22px;
+	margin-top: 21px;
+}
+#ie6 #sc-search-options input.downl,
+#ie7 #sc-search-options input.downl,
+#ie8 #sc-search-options input.downl{
+	margin-top: 18px;
+}
+#ie6 #keywordsearch #ps,
+#ie7 #keywordsearch #ps{
+	margin-left: -10px;
 }
 #sc-results h2 {
 	border-bottom: 1px solid #333;
@@ -493,6 +512,17 @@ article.school_item div.school-content ul{
 }
 article.school_item div.school-content li:first-child{
 	font-weight:bold;
+}
+
+#cloud-tag a:link {
+    color:#96172e;
+}
+#cloud-tag a:hover {
+    text-decoration:underline;
+}
+
+#cloud-tag a:visited {
+    color:#773141;
 }
 
 /* = Upload Photos Template

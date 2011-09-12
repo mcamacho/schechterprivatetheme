@@ -54,7 +54,7 @@
                         echo $tags->name . ','; } ?>
                     </li>
                     <li><span>Usage Rights:</span><?php echo get_post_meta(get_the_ID(), 'usage rights', true); ?></li>
-                    <li><a href="<?php echo $fullimage[0]; ?>" class="forced-download">DOWNLOAD</a></li>
+                    <li><span><a href="<?php echo $fullimage[0]; ?>" class="forced-download">DOWNLOAD</a></span></li>
                     </ul>
                 </div>
             <?php endwhile; ?>

@@ -196,6 +196,47 @@ function category_logo_func( $atts ) {
         }
 }
 
+//add resource post type
+add_action('init', 'resource_post_type');
+function resource_post_type() 
+{
+  $labels = array(
+    'name' => _x('resources', 'post type general name'),
+    'singular_name' => _x('resource', 'post type singular name'),
+    'add_new' => _x('Add New', 'resource'),
+    'add_new_item' => __('Add New resource'),
+    'edit_item' => __('Edit resource'),
+    'new_item' => __('New resource'),
+    'all_items' => __('All resources'),
+    'view_item' => __('View resource'),
+    'search_items' => __('Search resources'),
+    'not_found' =>  __('No resources found'),
+    'not_found_in_trash' => __('No resources found in Trash'), 
+    'parent_item_colon' => '',
+    'menu_name' => 'resources'
+
+  );
+  $args = array(
+    'labels' => $labels,
+    'description' => 'resource type post used for the resource library',
+    'public' => true,
+    'hierarchical' => false,
+    'supports' => array( 'title', 'editor', 'author' ),
+    'show_ui' => true,
+    'show_in_menu' => true,
+    'menu_position' => null,
+    
+    'show_in_nav_menus' => true,
+    'publicly_queryable' => false,
+    'exclude_from_search' => true,
+    'has_archive' => true,
+    'query_var' => true,
+    'can_export' => true,
+    'rewrite' => false,
+    'capability_type' => 'post'
+  ); 
+  register_post_type('sharedrsc',$args);
+}
 //add logo post type
 add_action('init', 'logo_post_type');
 function logo_post_type() 
