@@ -64,7 +64,7 @@ function schechter_setup() {
     add_theme_support( 'automatic-feed-links' );
 
     // This theme uses wp_nav_menu() sidebar.
-    register_nav_menu( 'primary', __( 'Primary Menu', 'schechtertheme' ) );
+    register_nav_menu( 'primary', __( 'Primary Menu', 'schechterthemeprivate' ) );
     
     // This theme uses Featured Images for attach image to logo and photo
     add_theme_support( 'post-thumbnails' );
@@ -79,7 +79,7 @@ function schechter_widgets_init() {
     register_widget("Image_Text_Widget");
     
     register_sidebar( array(
-        'name' => __( 'Main Sidebar', 'schechtertheme' ),
+        'name' => __( 'Main Sidebar', 'schechterthemeprivate' ),
         'id' => 'sidebar-1',
         'before_widget' => '<aside id="%1$s" class="widget %2$s">',
         'after_widget' => "</aside>",
@@ -89,9 +89,9 @@ function schechter_widgets_init() {
     
     //Add a footer sidebar for the home template
     register_sidebar( array(
-        'name' => __( 'Home Footer', 'schechtertheme' ),
+        'name' => __( 'Home Footer Links', 'schechterthemeprivate' ),
         'id' => 'sidebar-home',
-        'description' => __( 'widget area for the home area over footer', 'schechtertheme' ),
+        'description' => __( 'widget area for the home area over footer', 'schechterthemeprivate' ),
         'before_widget' => '<aside id="%1$s" class="widget %2$s">',
         'after_widget' => "</aside>",
         'before_title' => '<h3 class="widget-title">',
@@ -100,9 +100,9 @@ function schechter_widgets_init() {
     
     //Add a footer sidebar for the main link of each of the menu options
     register_sidebar( array(
-        'name' => __( 'Widgets - Menu 1', 'schechtertheme' ),
+        'name' => __( 'Schechter Identity Footer Links', 'schechterthemeprivate' ),
         'id' => 'sidebar-m1',
-        'description' => __( 'widget area for the main page of menu 1, hero-footer template must be assigned to the page, and order to 1', 'schechtertheme' ),
+        'description' => __( 'widget area for the main page of menu 1, hero-footer template must be assigned to the page, and order to 1', 'schechterthemeprivate' ),
         'before_widget' => '<aside id="%1$s" class="widget %2$s">',
         'after_widget' => "</aside>",
         'before_title' => '<h3 class="widget-title">',
@@ -110,9 +110,9 @@ function schechter_widgets_init() {
     ) );
     
     register_sidebar( array(
-        'name' => __( 'Widgets - Menu 2', 'schechtertheme' ),
+        'name' => __( 'Marketing Templates Footer Links', 'schechterthemeprivate' ),
         'id' => 'sidebar-m2',
-        'description' => __( 'widget area for the main page of menu 2, hero-footer template must be assigned to the page, and order to 2', 'schechtertheme' ),
+        'description' => __( 'widget area for the main page of menu 2, hero-footer template must be assigned to the page, and order to 2', 'schechterthemeprivate' ),
         'before_widget' => '<aside id="%1$s" class="widget %2$s">',
         'after_widget' => "</aside>",
         'before_title' => '<h3 class="widget-title">',
@@ -120,27 +120,27 @@ function schechter_widgets_init() {
     ) );
 
     register_sidebar( array(
-        'name' => __( 'Widgets - Menu 3', 'schechtertheme' ),
+        'name' => __( 'Photo Library Footer Links', 'schechterthemeprivate' ),
         'id' => 'sidebar-m3',
-        'description' => __( 'widget area for the main page of menu 3, hero-footer template must be assigned to the page, and order to 3', 'schechtertheme' ),
+        'description' => __( 'widget area for the main page of menu 3, hero-footer template must be assigned to the page, and order to 3', 'schechterthemeprivate' ),
         'before_widget' => '<aside id="%1$s" class="widget %2$s">',
         'after_widget' => "</aside>",
         'before_title' => '<h3 class="widget-title">',
         'after_title' => '</h3>',
     ) );
 	register_sidebar( array(
-        'name' => __( 'Widgets - Menu 3.1', 'schechtertheme' ),
+        'name' => __( 'By Grade Level Footer Links', 'schechterthemeprivate' ),
         'id' => 'sidebar-m31',
-        'description' => __( 'widget area for the main page of submenu 1 for menu 3, hero-footer template must be assigned to the page, and order to 6', 'schechtertheme' ),
+        'description' => __( 'widget area for the main page of submenu 1 for menu 3, hero-footer template must be assigned to the page, and order to 6', 'schechterthemeprivate' ),
         'before_widget' => '<aside id="%1$s" class="widget %2$s">',
         'after_widget' => "</aside>",
         'before_title' => '<h3 class="widget-title">',
         'after_title' => '</h3>',
     ) );
 	register_sidebar( array(
-        'name' => __( 'Widgets - Menu 3.2', 'schechtertheme' ),
+        'name' => __( 'By Category Footer Links', 'schechterthemeprivate' ),
         'id' => 'sidebar-m32',
-        'description' => __( 'widget area for the main page of submenu 2 for menu 3, hero-footer template must be assigned to the page, and order to 7', 'schechtertheme' ),
+        'description' => __( 'widget area for the main page of submenu 2 for menu 3, hero-footer template must be assigned to the page, and order to 7', 'schechterthemeprivate' ),
         'before_widget' => '<aside id="%1$s" class="widget %2$s">',
         'after_widget' => "</aside>",
         'before_title' => '<h3 class="widget-title">',
@@ -148,9 +148,9 @@ function schechter_widgets_init() {
     ) );
     
     register_sidebar( array(
-        'name' => __( 'Widgets - Menu 4', 'schechtertheme' ),
+        'name' => __( 'Resources Footer Links', 'schechterthemeprivate' ),
         'id' => 'sidebar-m4',
-        'description' => __( 'widget area for the main page of menu 4, hero-footer template must be assigned to the page, and order to 4', 'schechtertheme' ),
+        'description' => __( 'widget area for the main page of menu 4, hero-footer template must be assigned to the page, and order to 4', 'schechterthemeprivate' ),
         'before_widget' => '<aside id="%1$s" class="widget %2$s">',
         'after_widget' => "</aside>",
         'before_title' => '<h3 class="widget-title">',
@@ -158,9 +158,9 @@ function schechter_widgets_init() {
     ) );
     
     register_sidebar( array(
-        'name' => __( 'Widgets - Menu 5', 'schechtertheme' ),
+        'name' => __( 'Shared Resources Footer Links', 'schechterthemeprivate' ),
         'id' => 'sidebar-m5',
-        'description' => __( 'widget area for the main page of menu 5, hero-footer template must be assigned to the page, and order to 5', 'schechtertheme' ),
+        'description' => __( 'widget area for the main page of menu 5, hero-footer template must be assigned to the page, and order to 5', 'schechterthemeprivate' ),
         'before_widget' => '<aside id="%1$s" class="widget %2$s">',
         'after_widget' => "</aside>",
         'before_title' => '<h3 class="widget-title">',

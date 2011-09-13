@@ -5,90 +5,198 @@ Description:    Design created for the Schechter Network
 Author:         Designer Scott Ketchum - Developer Mauricio Camacho
 Author URI:     http: //bbmg.com/
 Version:        1.0
-Tags: 		two-columns, fixed-width, translation-ready, rtl-language-support, editor-style, custom-menu (optional)
+Tags: 		two-columns, fixed-width, editor-style, custom-menu (optional)
 */
 
-@import url('css/reset.css');
-@import url('css/home.css');
-@import url('css/menu.css');
+/* http://meyerweb.com/eric/tools/css/reset/
+  v2.0 | 20110126
+License: none (public domain)
+----------------------------------------------- */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* = MENU
+----------------------------------------------- */
+#main ul.menu {
+    font-size:17px;
+}
+
+#main ul.menu li {
+    border-left:4px solid #a40c34;
+    background-color:#ffe5ae;
+    width:214px;
+    padding-top:8px;
+    padding-bottom:8px;
+    padding-left:0;
+    padding-right:0;
+    margin-bottom:11px;
+}
+
+#main ul.menu a {
+    color:#731B36;
+    text-transform:uppercase;
+    display:block;
+    padding-left:11px;
+    padding-top:31px;
+    height:48px;
+    width:198px;
+}
+
+#main ul.sub-menu {
+    display:none;
+}
+
+#main ul.sub-menu li {
+    border-left-width:0;
+    background-color:transparent;
+    width:auto;
+    padding:0;
+    padding-top:7px;
+    margin-bottom:7px;
+}
+#ie6 #main ul.sub-menu li,
+#ie7 #main ul.sub-menu li {
+    padding-top:0;
+}
+
+#main ul.sub-menu a {
+    color: #ffffff;
+    font-size:13px;
+    text-transform:none;
+    height:auto;
+    padding-top:0;
+}
+
+#main li.current-menu-item a.witharrow{
+    background: transparent url(images/selected-menu.png) no-repeat left center;
+    color:#FFE5AE;
+}
+#ie6 #main li.current-menu-item a.witharrow{
+    background: transparent url(images/selected-menu.gif) no-repeat left center;
+}
 
 /* = Global
 ----------------------------------------------- */
 
 body {
-	color: #000000;
-	font-size: 13px;
-	font-family: Georgia, serif;
+    color: #000000;
+    font-size: 13px;
+    font-family: Georgia, serif;
 }
-input, textarea, #top-head, #colophon, ul.menu, h1, h2, h3, label, div.wp-pagenavi{
-	font-family: proxima-nova, Arial, sans-serif;
+input, textarea, #top-head, #colophon, ul.menu, h1, h2, h3, label, div.wp-pagenavi {
+    font-family: proxima-nova, Arial, sans-serif;
 }
-.entry-content{
-	line-height:1.7em;
-margin-top:20px;
+.entry-content {
+    line-height:1.7em;
+    margin-top:20px;
 }
-
+.entry-content.search-page {
+    margin-top:0;
+}
 a {
-	text-decoration:none;
-	outline:medium none; 
+    text-decoration:none;
+    outline:medium none; 
 }
-strong{font-weight:bold;}
-em{font-style:italic;}
+strong {
+    font-weight:bold;
+}
+em {
+    font-style:italic;
+}
 
 /* = Structure
 ----------------------------------------------- */
 
 body {
-	padding: 0 1em;
-	background: transparent url(images/schechter-bg.gif) center top fixed no-repeat;
+    padding: 0 1em;
+    background: transparent url(images/schechter-bg.gif) center top fixed no-repeat;
 }
-	#page {
-		background: #fff;
-		margin: 0 auto;
-		width: 960px;
-		padding: 25px 20px 0 20px;
-	}
-		#branding {
-			position:relative;
-			margin-bottom:30px;
-		}
-		#main {
-			clear: both;
-		}
-		#colophon {
-			clear: both;
-			position:relative;
-			top:65px;
-			height:40px;
-		}
+    #page {
+        background: #fff;
+        margin: 0 auto;
+        width: 960px;
+        padding: 25px 20px 0 20px;
+    }
+        #branding {
+            position:relative;
+            margin-bottom:30px;
+        }
+        #main {
+            clear: both;
+        }
+        #colophon {
+            clear: both;
+            position:relative;
+            top:65px;
+            height:40px;
+        }
 
 /* Standard WP Classes */
 .alignleft {
-	display: inline;
-	float: left;
-	margin: 10px;
+    display: inline;
+    float: left;
+    margin: 10px;
 }
 .alignright {
-	display: inline;
-	float: right;
-	margin: 10px;
+    display: inline;
+    float: right;
+    margin: 10px;
 }
 .aligncenter {
-	clear: both;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 div.division {
-	border-top:1px solid #000000;
-	height:10px;
+    border-top:1px solid #000000;
+    height:10px;
 }
 
 /* = Header Structure
 ----------------------------------------------- */
-#site-title {
-    /*margin-right: 270px;*/
-}
 #site-title a{
     display:block;
     height:98px;
@@ -117,35 +225,35 @@ div.division {
     margin:0 8px;
 }
 #top-menu a {
-	padding-left:12px;
-	color:#00446a;
-	line-height:22px;
+    padding-left:12px;
+    color:#00446a;
+    line-height:22px;
 }
 #top-menu a:hover {
-	text-decoration:underline;
+    text-decoration:underline;
 }
 #top-menu a,
 footer#colophon a{
-	background:transparent url(./images/button-icon.png) left center no-repeat;
+    background:transparent url(./images/button-icon.png) left center no-repeat;
 }
 #ie6 #top-menu a,
 #ie6 footer#colophon a{
-	background:transparent url(./images/button-icon.gif) left center no-repeat;
+    background:transparent url(./images/button-icon.gif) left center no-repeat;
 }
 
 #top-menu #tt-icon ,
 #top-menu #fb-icon {
-	margin:0 4px;
+    margin:0 4px;
 }
 #top-menu #fb-icon {
-	margin-right:25px;
+    margin-right:25px;
 }
 #tt-icon a,
 #fb-icon a{
-	padding-left:0;
-	display:block;
-	height:22px;
-	width:22px;
+    padding-left:0;
+    display:block;
+    height:22px;
+    width:22px;
 }
 #ie6 #tt-icon a,
 #tt-icon a{
@@ -157,172 +265,170 @@ footer#colophon a{
 }
 
 #top-head .searchform {
-	position:absolute;
-	right:0;
-	top:0;
+    position:absolute;
+    right:0;
+    top:0;
 }
 /* searchform */
 
 form.searchform div {
-	width:180px;
-	text-align:right;
-	background: transparent url(./images/search-box-bg.png) no-repeat left center;
+    width:180px;
+    text-align:right;
+    background: transparent url(./images/search-box-bg.png) no-repeat left center;
 }
 form.searchform input {
-	height:20px;
-	font-size:10px;
-	background-color:transparent;
-	border-width:0;
-	outline-width:0;
+    height:20px;
+    font-size:10px;
+    background-color:transparent;
+    border-width:0;
+    outline-width:0;
 }
 form.searchform .screen-reader-text {
-	display:none;
+    display:none;
 }
 form.searchform #s {
-	width:100px;
+    width:100px;
 }
 form.searchform #searchsubmit {
-	text-align:left;
-	text-transform:uppercase;
-	color:#ffffff;
-	width:67px;
+    text-align:left;
+    text-transform:uppercase;
+    color:#ffffff;
+    width:67px;
 }
 /* = Content Structure
 ----------------------------------------------- */
 #primary {
-	float: right;
-	margin: 0 0 0 -248px;
-	width: 100%;
+    float: right;
+    margin: 0 0 0 -248px;
+    width: 100%;
 }
-	#content {
+    #content {
         position: relative;
-		margin: 0 0 0 248px;
-		width: 712px;
-	}
-        #content header {
-            position:absolute;
-            top:15px;
-            left:15px;
-        }
-	
-	h1.entry-title,
-	h1.page-title {
-		margin:5px 0 10px;
-		font-size:36px;
-		color:#FFFFFF;
-	}
-	h1.page-title span{
-		display:block;
-		font-size:20px;
-	}
-	h2.entry-title a {
-		font-size:14px;
-		color:#96172e;
-		line-height:18px;
-	}
-	h2.entry-title a:hover {
-		text-decoration:underline;
-	}
-	h2.entry-title a:visited {
-		color:#773141;
-	}
-    div.entry-content h2 {
-      font-weight:bold;
-      color:#96172e;
+        margin: 0 0 0 248px;
+        width: 712px;
     }
-	div.entry-content h3 {
-		font-size:14px;
-		line-height:18px;
-		font-weight:bold;
+    #content header {
+        position:absolute;
+        top:15px;
+        left:15px;
+    }
+    
+    h1.entry-title,
+    h1.page-title {
+        margin:5px 0 10px;
+        font-size:36px;
+        color:#FFFFFF;
+    }
+    h1.page-title span{
+        display:block;
+        font-size:20px;
+    }
+    h2.entry-title a {
+        font-size:14px;
         color:#96172e;
-	}
-	div.entry-content p {
-		margin-bottom:1em;
-	}
-	
-	div.entry-content p a:link {
-		color:#96172e;
-	}
-	div.entry-content p a:hover {
-		text-decoration:underline;
-	}
-	div.entry-content p a:visited {
-		color:#773141;
-	}
-        
-        h2.category-logo {
-            border-bottom:2px dashed #FFE5AE;
-            margin-bottom:8px;
-        }
-        ul.category-logo li {
-            width: 640px;
-            margin-bottom:12px;
-            overflow: hidden;
-        }
-        ul.category-logo div {
-            float: right;
-            width: 400px;
-        }
-        ul.category-logo p {
-            margin-bottom: auto;
-        }
-        div.entry-content ul.category-logo a,
-        div.entry-content ul.category-logo a:visited {
-            background-color: #004250;
-            font-family:proxima-nova, Arial, sans-serif;
-            color: #FFFFFF;
-            display: block;
-            padding: 4px 22px 2px;
-            text-transform: uppercase;
-            width: 74px;
-        }
-        #description {
-            margin-top: 15px;
-            padding-bottom:5px;
-            border-bottom:2px dashed #FFE5AE;
-            font-family:proxima-nova, Arial, sans-serif;
-            font-weight:bold;
-            font-size:14px;
-        }
-        #library {
-            overflow:hidden;
-            margin-left:-12px;
-            width:740px;
-        }
-        #ie6 #library {
-            margin-left:-28px;
-            width:762px;
-        }
-        div.photo {
-            float:left;
-            width:218px;
-            height:179px;
-            margin:14px 14px 0;
-        }
-        div.photo ul{
-            display:none;
-        }
-        div.photo h2{
-            line-height:1;
-        }
+        line-height:18px;
+    }
+    h2.entry-title a:hover {
+        text-decoration:underline;
+    }
+    h2.entry-title a:visited {
+        color:#773141;
+    }
+    div.entry-content h2 {
+        font-weight:bold;
+        color:#96172e;
+    }
+    div.entry-content h3 {
+        font-size:14px;
+        line-height:18px;
+        font-weight:bold;
+        color:#96172e;
+    }
+    div.entry-content p {
+        margin-bottom:1em;
+    }
+    
+    div.entry-content p a:link {
+        color:#96172e;
+    }
+    div.entry-content p a:hover {
+        text-decoration:underline;
+    }
+    div.entry-content p a:visited {
+        color:#773141;
+    }
+    
+    h2.category-logo {
+        border-bottom:2px dashed #FFE5AE;
+        margin-bottom:8px;
+    }
+    ul.category-logo li {
+        width: 640px;
+        margin-bottom:12px;
+        overflow: hidden;
+    }
+    ul.category-logo div {
+        float: right;
+        width: 400px;
+    }
+    ul.category-logo p {
+        margin-bottom: auto;
+    }
+    div.entry-content ul.category-logo a,
+    div.entry-content ul.category-logo a:visited {
+        background-color: #004250;
+        font-family:proxima-nova, Arial, sans-serif;
+        color: #FFFFFF;
+        display: block;
+        padding: 4px 22px 2px;
+        text-transform: uppercase;
+        width: 74px;
+    }
+    #description {
+        margin-top: 15px;
+        padding-bottom:5px;
+        border-bottom:2px dashed #FFE5AE;
+        font-family:proxima-nova, Arial, sans-serif;
+        font-weight:bold;
+        font-size:14px;
+    }
+    #library {
+        overflow:hidden;
+        margin-left:-12px;
+        width:740px;
+    }
+    #ie6 #library {
+        margin-left:-28px;
+        width:762px;
+    }
+    div.photo {
+        float:left;
+        width:218px;
+        height:179px;
+        margin:14px 14px 0;
+    }
+    div.photo ul{
+        display:none;
+    }
+    div.photo h2{
+        line-height:1;
+    }
 
 /* = Aside Structure
 ----------------------------------------------- */
 #secondary {
-	float: left;
-	/*margin-left: 7.6%;*/
-	margin-right: 0;
-	/*width: 18.8%;*/
+    float: left;
+    margin-right: 0;
 }
 div.dotline {
-  border:2px dashed #FFE5AE;
-  border-width:0 0 2px 0;
+    border:2px dashed #FFE5AE;
+    border-width:0 0 2px 0;
 }
 div.footer-widgets {
-  padding:15px 0 12px;
+    padding:15px 0 12px;
     margin-left:-12px;
     width:740px;
-  overflow:hidden;
+    overflow:hidden;
 }
 #ie6 div.footer-widgets{
     margin-left:-28px;
@@ -356,36 +462,35 @@ aside.img_txt_wgt div{
     line-height:1.7em;
 }
 #aside_quote {
-	font-family: proxima-nova, Arial, sans-serif;
-	margin:30px 0 0 15px;
-	width:175px;
+    font-family: proxima-nova, Arial, sans-serif;
+    margin:30px 0 0 15px;
+    width:175px;
 }
 #aside_quote h3 {
-	display:none;
+    display:none;
 }
 #aside_quote p{
-	/*width:175px;*/
-	font-size: 14px;
-	line-height: 1.8em;
-	color:#A40C34;
+    font-size: 14px;
+    line-height: 1.8em;
+    color:#A40C34;
 }
 #aside_quote p a{
-	color:#A40C34;
+    color:#A40C34;
 }
 #aside_quote p:before,
 #aside_quote p:after {
-	content: '"';
+    content: '"';
 }
 
 #aside_quote ul.post-meta {
-	margin-top:10px;
-	font-size: 12px;
+    margin-top:10px;
+    font-size: 12px;
 }
 #aside_quote ul.post-meta strong {
-	font-weight:bold;
+    font-weight:bold;
 }
 #aside_quote ul.post-meta a {
-	color:#333333;
+    color:#333333;
 }
 
 
@@ -393,125 +498,181 @@ aside.img_txt_wgt div{
 ----------------------------------------------- */
 footer#colophon,
 footer#colophon a {
-	color:#ffffff;
+    color:#ffffff;
 }
 footer#colophon a {
-	padding-left:11px;
+    padding-left:11px;
 }
 footer#colophon a:hover {
-	text-decoration:underline;
+    text-decoration:underline;
 }
 
 footer#colophon p {
-	float:right;
-	font-size:10px;
-	margin-top:3px;
+    float:right;
+    font-size:10px;
+    margin-top:3px;
 }
 
 /* Footer Menu */
 
 footer#colophon ul.menu li {
-	float: left;
-        margin:0 7px;
+    float: left;
+    margin:0 7px;
 }
 
 /* Search Page */
 body.search #content p {
-	margin-bottom:15px;
+    margin-bottom:15px;
+}
+
+/* = Home Specific
+----------------------------------------------- */
+/* general */
+#login-register{
+    width:100%;
+    overflow:hidden;
+}
+
+#login-register div.left{
+    float:left;
+    width:50%;
+}
+#login-register div.right{
+    float:right;
+    width:50%;
+}
+
+#login-register,
+#login-register div h2 {
+    border-bottom:1px solid #000000;
+}
+
+#login-register div h2 {
+    font-size:20px;
+    margin-bottom:10px;
+    padding-bottom:4px;
+}
+
+#login-register p {
+    margin-bottom:10px;
+}
+
+#login-register form,
+div.register-response {
+    width:80%;
+}
+
+#login-register input {
+    width:100%;
+}
+div.register-response {
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px dashed #000000;
+  color:#731B36;
+}
+p.login-submit,
+p.register-submit {
+    text-align:right;
+}
+input#rememberme,
+input#wp-submit,
+input#wp-register {
+    width:auto;
 }
 
 /* = Find a School
 ----------------------------------------------- */
 #sc-search-map,
 #sc-search-options{
-	padding-bottom:10px;
-	line-height:1.5em;
-	clear:left;
+    padding-bottom:10px;
+    line-height:1.5em;
+    clear:left;
 }
 #sc-search-map h2,
 #sc-search-options h2{
-	font-size:20px;
+    font-size:20px;
 }
 #sc-search-options form,
 #cloud-tag {
-	margin:10px;
+    margin:10px;
 }
 #cloud-tag p{
-	padding-bottom:10px;
+    padding-bottom:10px;
 }
 #sc-search-options form p {
-	float:left;
-	margin-right:10px;
+    float:left;
+    margin-right:10px;
 }
 
 #sc-search-options p.wide,
 #sc-search-options p.wide input,
 #sc-search-options p.wide select {
-	width:122px;
+    width:122px;
 }
 #sc-search-options p.downl{
-	margin: 18px 14px 0 6px;
-	font-size:2em;
+    margin: 18px 14px 0 6px;
+    font-size:2em;
 }
 #sc-search-options input.downl{
-	margin-top: 21px;
+    margin-top: 21px;
 }
 #ie6 #sc-search-options input.downl,
 #ie7 #sc-search-options input.downl,
 #ie8 #sc-search-options input.downl{
-	margin-top: 18px;
+    margin-top: 18px;
 }
 #ie6 #keywordsearch #ps,
 #ie7 #keywordsearch #ps{
-	margin-left: -10px;
+    margin-left: -10px;
 }
 #sc-results h2 {
-	border-bottom: 1px solid #333;
-	padding-bottom: 5px;
-	margin-bottom: 10px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
 }
 #sc-results h2 a{
-	left: 445px;
-	position: relative;
+    left: 445px;
+    position: relative;
 }
 h2.school-directory {
-	border-bottom: 2px solid #A40C34;
-	color: #333333;
-	font-size: 18px;
-	margin: 5px 0;
-	padding: 8px 10px 5px;
+    border-bottom: 2px solid #A40C34;
+    color: #333333;
+    font-size: 18px;
+    margin: 5px 0;
+    padding: 8px 10px 5px;
 }
 article.school_item{
-	padding-bottom: 10px;
-	margin-bottom:10px;
-	border-bottom:1px solid #333333;
-	overflow:hidden;
+    padding-bottom: 10px;
+    margin-bottom:10px;
+    border-bottom:1px solid #333333;
+    overflow:hidden;
 }
 
 article.school_item img,
 article.school_item div.school-content,
 article.school_item div.school-content ul {
-	float:left;
+    float:left;
 }
 article.school_item img{
-	margin-right: 20px;
+    margin-right: 20px;
 }
 article.school_item div.school-content{
-	width: 580px;
-	font-size: 12px;
-	line-height: 1.2em;
+    width: 580px;
+    font-size: 12px;
+    line-height: 1.2em;
 }
 article.school_item div.school-content h1{
-	font-size:13px;
+    font-size:13px;
 }
 article.school_item div.school-content p{
-	margin-bottom:10px;
+    margin-bottom:10px;
 }
 article.school_item div.school-content ul{
-	padding-right:30px;
+    padding-right:30px;
 }
 article.school_item div.school-content li:first-child{
-	font-weight:bold;
+    font-weight:bold;
 }
 
 #cloud-tag a:link {
