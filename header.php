@@ -87,7 +87,8 @@
 					<?php else : ?>
 						<li><a href="<?php /*echo wp_login_url( site_url('/schechter-identity/') );*/ ?>" title="Login">Login</a></li>
 					<?php endif; ?>
-					<li><a href="<?php echo site_url('/contact-us/'); ?>" title="Contact Us">Contact Us</a></li>
+					<li><a href="<?php echo substr(site_url(),0,-8) . '/contact-us/'; ?>" title="Contact Us">Contact Us</a></li>
+					<li><a href="<?php echo substr(site_url(),0,-8); ?>" title="Contact Us">Return to Public Site</a></li>
 				</ul><!-- #top-menu -->
 			</nav>
 			<?php get_search_form(); ?>

@@ -354,25 +354,25 @@ function simplr_validate($data) {
     if(!$data['title']){$errors[] = __('You must enter your title.'); }
     if(!$data['school']){$errors[] = __('You must enter the school/affiliation.'); }
     // Validate username
-    if(!$data['user_login']) { 
+    if(!$data['user_login1']) { 
         $errors[] = __('You must enter a username.'); 
     } else {
         // check whether username is valid
-        $user_test = validate_username( $data['user_login'] );
+        $user_test = validate_username( $data['user_login1'] );
         if($user_test != true) {
             $errors[] .= __('Invalid Username.');
         }
         // check whether username already exists
-        $user_id = username_exists( $data['user_login'] );
+        $user_id = username_exists( $data['user_login1'] );
         if($user_id) {
             $errors[] .= __('This username already exists.');
         }
     } //end username validation
-    if(!$data['user_pass'] || !$data['user_pass_confirm']) {
+    if(!$data['user_pass1'] || !$data['user_pass_confirm']) {
         $errors[] = __('You must enter a password and password confirmation.');
     }
     // Make sure passwords match
-    if($data['user_pass'] != $data['user_pass_confirm']) {
+    if($data['user_pass1'] != $data['user_pass_confirm']) {
         $errors[] = __('The passwords you entered do not match.');
     }	
     // Validate email
@@ -400,9 +400,9 @@ function simplr_setup_user($atts,$data) {
 	$lname = $data['last_name'];
 	$title = $data['title'];
 	$school = $data['school'];
-	$user_name = $data['user_login'];
+	$user_name = $data['user_login1'];
 	$user_name = sanitize_user($user_name, true);
-	$passw = $data['user_pass'];
+	$passw = $data['user_pass1'];
 	$email = $data['user_email'];
 	
 	//This part actually generates the account
@@ -430,7 +430,7 @@ function simplr_setup_user($atts,$data) {
 	$_POST['last_name'] = '';
 	$_POST['title'] = '';
 	$_POST['school'] = '';
-	$_POST['user_login'] = '';
+	$_POST['user_login1'] = '';
 	$_POST['user_email'] = '';
 	
 	$extra = "Please wait for the message entry clearance.";
@@ -442,7 +442,7 @@ function simplr_setup_user($atts,$data) {
 function simplr_send_notifications($atts, $data, $passw) {
 	$site = site_url();
 	$name = get_bloginfo('name');
-	$user_name = $data['user_login'];
+	$user_name = $data['user_login1'];
 	$email = $data['user_email'];
 	$title = $data['title'];
 	$school = $data['school'];
@@ -452,7 +452,7 @@ function simplr_send_notifications($atts, $data, $passw) {
 	wp_mail($notify, "A new user registered for $name", "A new user has registered for $name.\rUsername: $user_name\rEmail: $email\rTitle: $title\rSchool: $school \r",$headers);
 	$emessage = $emessage . "\r\r---\r";
             if(!isset($data['password'])) {
-                $emessage .= "Schechter Network Site Administrator will send you a message with the confirmation and upgrade of your user account.\r\r";
+                $emessage .= "A Schechter Network Administrator will send you a message shortly confirming that your account has been approved and activated.\r\r";
             }
 	$emessage .= "Username: $user_name\rPassword: $passw\rLogin: $site/login-register/";
 	wp_mail($data['user_email'],"$name - Registration", apply_filters('simplr_email_confirmation_message',$emessage,$data) , $headers);

@@ -47,11 +47,11 @@
                 <p><label for="school">SCHOOL / AFFILIATION</label>
                 <input name="school" id="school" type="text" class="input" value="<?php echo count($_POST) ? $_POST['school'] : ''; ?>" /></p>
                 
-                <p><label for="user_login">USERNAME</label>
-                <input name="user_login" id="user_login" type="text" class="input" value="<?php echo count($_POST) ? $_POST['user_login'] : ''; ?>" /></p>
+                <p><label for="user_login1">USERNAME</label>
+                <input name="user_login1" id="user_login1" type="text" class="input" value="<?php echo count($_POST) ? $_POST['user_login1'] : ''; ?>" /></p>
                 
-                <p><label for="user_pass">PASSWORD</label>
-                <input name="user_pass" id="user_pass" type="password" class="input" /></p>
+                <p><label for="user_pass1">PASSWORD</label>
+                <input name="user_pass1" id="user_pass1" type="password" class="input" /></p>
                 
                 <p><label for="user_pass_confirm">CONFIRM PASSWORD</label>
                 <input name="user_pass_confirm" id="user_pass_confirm" type="password" class="input" /></p>
